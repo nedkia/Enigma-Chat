@@ -1,3 +1,3 @@
 # Enigma-Chat
 
-test
+Ensure colorama is installed: pip3 install colorama
