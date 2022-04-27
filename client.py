@@ -39,7 +39,7 @@ def opening_inputs():
 
 
 SERVER_HOST = opening_inputs()
-#SERVER_HOST = "159.91.93.242"
+
 SERVER_PORT = 5002 # server's port
 separator_token = "<SEP>" # we will use this to separate the client name & message
 
