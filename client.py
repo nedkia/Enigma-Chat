@@ -25,11 +25,13 @@ def opening_inputs():
     print("Would you like to use a default server host or enter a private IP address?")
     
     option = ""
-    
+
     while option != "1" or option != "2":
         print("1: Default Server Host")
         print("2: Enter private IP address")
+
         option = input("")
+
         if option == "1":
             server_host = "127.0.0.1"
             return server_host
@@ -40,7 +42,9 @@ def opening_inputs():
             print("Invalid input. Please enter a valid option.")
 
 
-SERVER_HOST = opening_inputs()
+#SERVER_HOST = opening_inputs()
+SERVER_HOST = "159.91.93.242"
+
 
 SERVER_PORT = 5002        # server's port
 separator_token = "<SEP>" # we will use this to separate the client name & message
