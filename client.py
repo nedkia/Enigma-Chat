@@ -19,8 +19,9 @@ client_color = random.choice(colors)
 # server's IP address
 # if the server is not on this machine, 
 # put the private (network) IP address (e.g 192.168.1.2)
-'''
-def opening_inputs(server_host):
+
+def opening_inputs():
+    server_host = ""
     print("Would you like to use a default server host or enter a private IP address?")
     print("1: Default Server Host")
     print("2: Enter private IP address")
@@ -36,9 +37,9 @@ def opening_inputs(server_host):
     else:
         print("Invalid input. Please enter a valid option.")
 
-'''
-SERVER_HOST = "127.0.0.1"
-# SERVER_HOST = "159.91.93.188"
+
+SERVER_HOST = opening_inputs()
+#SERVER_HOST = "159.91.93.242"
 SERVER_PORT = 5002 # server's port
 separator_token = "<SEP>" # we will use this to separate the client name & message
 
