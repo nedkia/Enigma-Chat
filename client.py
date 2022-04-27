@@ -25,9 +25,32 @@ machine = EnigmaMachine.from_key_sheet(
        ring_settings=[1, 20, 11],
        plugboard_settings='AV BS CG DL FU HZ IN KM OW RX')
 
+
 # server's IP address
 # if the server is not on this machine, 
 # put the private (network) IP address (e.g 192.168.1.2)
+
+def opening_inputs():
+    server_host = ""
+    print("Would you like to use a default server host or enter a private IP address?")
+    
+    option = ""
+
+    while option != "1" or option != "2":
+        print("1: Default Server Host")
+        print("2: Enter private IP address")
+
+        option = input("")
+
+        if option == "1":
+            server_host = "127.0.0.1"
+            return server_host
+        elif option == "2":
+            server_host = input("Enter IP address: ")
+            return server_host
+        else:
+            print("Invalid input. Please enter a valid option.")
+            
 # SERVER_HOST = "127.0.0.1"
 SERVER_HOST = "159.91.93.242"
 #SERVER_HOST = "159.91.226.35"
