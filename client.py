@@ -40,7 +40,7 @@ def opening_inputs():
 
 SERVER_HOST = opening_inputs()
 
-SERVER_PORT = 5002 # server's port
+SERVER_PORT = 5002        # server's port
 separator_token = "<SEP>" # we will use this to separate the client name & message
 
 # initialize TCP socket
@@ -51,6 +51,10 @@ s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected.")
 # prompt the client for a name
 name = input("Enter your name: ")
+
+# notfy user they have successfully registered
+print("Registered. You can begin typing messages.")
+
 def listen_for_messages():
     while True:
         message = s.recv(1024).decode()
