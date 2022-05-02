@@ -87,11 +87,12 @@ print("Registered. You can now start typing for messages.")
 def listen_for_messages():
     while True:
         message = s.recv(1024).decode()
-        #message = s.recv(1024)
+        splitmessage = message.split('  ')
+        timestamp = splitmessage[0]
         machine.set_display(msg_key)
-        decoded = machine.process_text(message)
-        print("\n" + decoded)
-
+        decoded = machine.process_text(splitmessage[1])
+        print("\n" + timestamp + " " + decoded)
+       
 # make a thread that listens for messages to this client & print them
 t = Thread(target=listen_for_messages)
 
@@ -110,14 +111,14 @@ while True:
 
     plaintext = to_send
     ciphertext = machine.process_text(plaintext)
-    to_send = ciphertext
+    to_send_message = ciphertext
 
     # a way to exit the program
     if to_send.lower() == 'q':
         break
     # add the datetime, name & the color of the sender
     date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-    #to_send = f"{client_color}[{date_now}] {name}{separator_token}{to_send}{Fore.RESET}"
+    to_send = f"{client_color}[{date_now}] {name}{separator_token} {to_send_message}"
     # finally, send the message
     s.send(to_send.encode())
 
