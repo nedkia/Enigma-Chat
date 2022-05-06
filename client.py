@@ -29,22 +29,6 @@ machine = EnigmaMachine.from_key_sheet(
        ring_settings=[1, 20, 11],
        plugboard_settings='AV BS CG DL FU HZ IN KM OW RX')
 
-# server's IP address
-# if the server is not on this machine, 
-# put the private (network) IP address (e.g 192.168.1.2)
-# SERVER_HOST = "127.0.0.1"
-#SERVER_HOST = "159.91.93.242"
-#SERVER_HOST = "159.91.94.228"
-#SERVER_HOST = "159.91.226.35"
-# SERVER_HOST = "159.91.93.188"
-SERVER_HOST = "159.91.66.147"
-# SERVER_HOST = "10.9.0.1"
-SERVER_PORT = 5002 # server's port
-separator_token = "<SEP>" # we will use this to separate the client name & message
-
-# server's IP address
-# if the server is not on this machine, 
-# put the private (network) IP address (e.g 192.168.1.2)
 
 def opening_inputs():
     server_host = ""
@@ -67,6 +51,14 @@ def opening_inputs():
         else:
             print("Invalid input. Please enter a valid option.")
 
+# server's IP address
+# if the server is not on this machine, 
+# put the private (network) IP address (e.g 192.168.1.2)
+
+SERVER_HOST = opening_inputs()
+SERVER_PORT = 5002 # server's port
+separator_token = "<SEP>" # we will use this to separate the client name & message
+
 # initialize TCP socket
 s = socket.socket()
 print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
@@ -81,8 +73,6 @@ print("\nDo not type any numbers as we do not understand them\n")
 
 # prompt the client for a name
 name = input("Enter your name: ")
-#start_pos = input("Enter the starting position: ")
-#msg_key = input("Enter the message key: ")
 
 startingPosition = input("Enter the initial starting position: ")
 
@@ -93,7 +83,6 @@ if len(startingPosition) != 3:
 
 # set machine initial starting position
 machine.set_display(startingPosition)
-#machine.set_display('WXC')
 
 messageKey = input("Enter the message key: ")
 
@@ -103,12 +92,10 @@ if len(messageKey) != 3:
             messageKey = input("Enter the new message key: \n")
 
 # decrypt the message key
-#msg_key = machine.process_text('KCH')
 msg_key = machine.process_text(messageKey)
 
 # decrypt the cipher text with the unencrypted message key
 machine.set_display(msg_key)
-
 
 print("\nEncryption settings saved. Type and enter the 'e' key at any time to change encryption settings. \n")
 
@@ -124,7 +111,6 @@ def menu(startingPosition,msg_key):
         userInput = input()
 
         if userInput == "1":
-            #print("\nYour current starting position is: " + startingPosition)
             startingPosition = input("\nEnter the new initial starting position: \n")
             if len(startingPosition) != 3:
                 while len(startingPosition) !=3 :
@@ -134,7 +120,6 @@ def menu(startingPosition,msg_key):
             print("\nInitial starting position successfully changed to " + startingPosition + "\n")
         
         elif userInput == "2":
-            #print("\nYour current message key is: " + messageKey)
             messageKey = input("\nEnter the new message key: \n")
             if len(messageKey) != 3:
                 while len(messageKey) !=3 :
@@ -146,7 +131,6 @@ def menu(startingPosition,msg_key):
         
         elif userInput == "3" :
             doneWithMenu = 1
-            #print("\nSuccessfully quit menu\n")
             return startingPosition,msg_key
 
 
