@@ -69,8 +69,6 @@ print("[+] Connected.")
 print("\nWelcome to the supersecret Chatroom\n")
 print("\nDo not type any numbers as we do not understand them\n")
 
-
-
 # prompt the client for a name
 name = input("Enter your name: ")
 
@@ -133,27 +131,13 @@ def menu(startingPosition,msg_key):
             doneWithMenu = 1
             return startingPosition,msg_key
 
-
-
-# while True:
-
-#     userInput = input()
-
-#     if userInput == "e":
-#        #print("you pressed e")
-#        menu()
-
-
 def listen_for_messages():
     while True:
         message = s.recv(1024).decode()
         var = message.split('TEST')
-        #message = s.recv(1024)
         machine.set_display(msg_key)
         decoded = machine.process_text(var[1]) 
         print("\n" + var[0] + decoded)
-
-#machine.set_display(msg_key)
 
 # make a thread that listens for messages to this client & print them
 t = Thread(target=listen_for_messages)
@@ -164,10 +148,6 @@ t.start()
        
 
 while True:
-
-    #if keyboard.read_key() == "e":
-        #print("you pressed e")
-    #    menu()
 
     # input message we want to send to the server
     to_send =  input()
@@ -189,6 +169,7 @@ while True:
         # add the datetime, name & the color of the sender
         date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
         to_send = f"{client_color}[{date_now}] {name}{separator_token}TEST{to_send}TEST{Fore.RESET}"
+
         # finally, send the message
         s.send(to_send.encode())
 
