@@ -1,10 +1,10 @@
 import socket
 import random
-import keyboard
 from threading import Thread
 from datetime import datetime
 from colorama import Fore, init, Back
 from enigma.machine import EnigmaMachine
+from art import *
 
 # init colors
 init()
@@ -29,6 +29,7 @@ machine = EnigmaMachine.from_key_sheet(
        ring_settings=[1, 20, 11],
        plugboard_settings='AV BS CG DL FU HZ IN KM OW RX')
 
+tprint("Enigma Chat")
 
 def opening_inputs():
     server_host = ""
@@ -129,6 +130,7 @@ def menu(startingPosition,msg_key):
         
         elif userInput == "3" :
             doneWithMenu = 1
+            print("Returned to chat")
             return startingPosition,msg_key
 
 def listen_for_messages():
