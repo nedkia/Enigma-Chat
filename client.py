@@ -31,12 +31,6 @@ machine = EnigmaMachine.from_key_sheet(
        plugboard_settings='AV BS CG DL FU HZ IN KM OW RX')
 
 # server's IP address
-SERVER_HOST = "159.91.66.147"
-# SERVER_HOST = "10.9.0.1"
-SERVER_PORT = 5002 # server's port
-separator_token = "<SEP>" # we will use this to separate the client name & message
-
-# server's IP address
 # if the server is not on this machine, 
 # put the private (network) IP address (e.g 192.168.1.2)
 
@@ -61,6 +55,11 @@ def opening_inputs():
         else:
             print("Invalid input. Please enter a valid option.")
 
+
+SERVER_HOST = opening_inputs()
+SERVER_PORT = 5002 # server's port
+separator_token = "<SEP>" # we will use this to separate the client name & message
+
 # initialize TCP socket
 s = socket.socket()
 print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
@@ -76,8 +75,6 @@ print("\nDo not type any numbers as we do not understand them\n")
 
 # prompt the client for a name
 name = input("Enter your name: ")
-#start_pos = input("Enter the starting position: ")
-#msg_key = input("Enter the message key: ")
 
 startingPosition = input("Enter the initial starting position: ")
 
@@ -88,7 +85,6 @@ if len(startingPosition) != 3:
 
 # set machine initial starting position
 machine.set_display(startingPosition)
-#machine.set_display('WXC')
 
 messageKey = input("Enter the message key: ")
 
@@ -98,7 +94,6 @@ if len(messageKey) != 3:
             messageKey = input("Enter the new message key: \n")
 
 # decrypt the message key
-#msg_key = machine.process_text('KCH')
 msg_key = machine.process_text(messageKey)
 
 # decrypt the cipher text with the unencrypted message key
